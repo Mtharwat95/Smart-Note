@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="@color/baseGround"
+        tools:context=".Views.activity.NewProfile">
+
+        <RelativeLayout
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="2dp"
+            android:background="@drawable/layout_shape"
+            android:elevation="20dp"
+            android:padding="4dp"
+            app:layout_constraintCircleRadius="20dp"
+            tools:targetApi="lollipop">
+
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:id="@+id/close"
+                style="@style/AppTheme.RoundedTextView"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="false"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_close_24"
+                android:visibility="visible" />
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/toolbarTitle"
+                style="@style/textStyleHeadLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center"
+                android:fontFamily="@font/berkshire_swash"
+                android:gravity="center"
+                android:text="@string/create_your_profile" />
+
+<!--            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/createProfileTxt"
+                style="@style/textStyleHeadLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/toolbarTitle"
+                android:layout_centerHorizontal="false"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="2dp"
+                android:fontFamily="@font/berkshire_swash"
+                android:gravity="center"
+                android:text="@string/welcome_to_smart_note"
+                android:layout_alignParentLeft="true" />-->
+
+        </RelativeLayout>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:visibility="visible"
+                android:layout_marginTop="2dp"
+                android:id="@+id/createProfileTxt"
+                android:layout_below="@id/toolbar"
+                style="@style/textStyleHeadLines"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="@font/berkshire_swash"
+                android:gravity="center"
+                android:text="@string/welcome_to_smart_note" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/createProfileTxt"
+            android:layout_centerInParent="true"
+            android:layout_marginTop="8dp"
+            android:orientation="vertical"
+            tools:ignore="UselessParent">
+
+
+            <androidx.constraintlayout.utils.widget.ImageFilterView
+                android:visibility="gone"
+                android:id="@+id/addProfileImage"
+                style="@style/AppTheme.RoundedTextView"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_baseline_account_circle_24" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="8dp"
+                android:autofillHints="@string/e_mail"
+                android:hint="@string/e_mail"
+                android:minWidth="300dp"
+                android:textColorHint="@color/textColor"
+                app:expandedHintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/textColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addProfileEmail"
+                    android:layout_width="match_parent"
+                    android:focusable="true"
+                    style="@style/textStyle"
+                    android:padding="4dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:autofillHints="@string/password"
+                android:hint="@string/password"
+                android:minWidth="300dp"
+                android:textColorHint="@color/textColor"
+                app:expandedHintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/textColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addProfilePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    style="@style/textStyle"
+                    android:padding="4dp"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/AppTheme.RoundedTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="4dp"
+                android:autofillHints="@string/confirm_password"
+                android:hint="@string/confirm_password"
+                android:minWidth="300dp"
+                android:textColorHint="@color/textColor"
+                app:expandedHintEnabled="true"
+                app:hintAnimationEnabled="true"
+                app:hintEnabled="true"
+                app:hintTextColor="@color/textColor">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/addProfileConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:focusable="true"
+                    style="@style/textStyle"
+                    android:padding="4dp"
+                    android:inputType="textPassword"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:id="@+id/addProfileSave"
+                style="@style/AppTheme.RoundedCornerMaterialButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:minWidth="150dp"
+                android:text="@string/save" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+</layout>

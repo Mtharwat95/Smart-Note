@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/baseGround"
+        tools:context=".Views.activity.NewNote">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="2dp"
+            android:layout_height="match_parent">
+
+
+            <RelativeLayout
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/layout_shape"
+                android:layout_margin="2dp"
+                android:elevation="20dp"
+                android:padding="4dp"
+                app:layout_constraintCircleRadius="20dp"
+                tools:targetApi="lollipop">
+
+
+                <androidx.constraintlayout.utils.widget.ImageFilterView
+                    android:visibility="visible"
+                    android:id="@+id/close"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    style="@style/AppTheme.RoundedTextView"
+                    android:scaleType="fitXY"
+                    android:layout_centerVertical="true"
+                    android:src="@drawable/ic_baseline_close_24"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/toolbarTitle"
+                    style="@style/textStyleHeadLines"
+                    android:layout_width="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/berkshire_swash"
+                    android:gravity="center"
+                    android:text="@string/create_new_note" />
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_centerInParent="true"
+                android:layout_below="@id/toolbar"
+                android:layout_marginBottom="8dp"
+                android:padding="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_height="match_parent">
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/priority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginStart="8dp"
+                    android:padding="4dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_centerHorizontal="true"
+                    android:text="@string/note_priority"
+                    style="@style/textStyle"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/newNotePriority"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="false"
+                    android:layout_alignParentRight="false"
+                    android:layout_toEndOf="@id/priority"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginEnd="8dp"
+                    style="?android:attr/starStyle"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_toRightOf="@id/priority" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_below="@id/newNotePriority"
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:minWidth="300dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_centerHorizontal="true"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    style="@style/AppTheme.RoundedTextView"
+                    android:textColorHint="@color/textColor"
+                    android:autofillHints="@string/title"
+                    app:expandedHintEnabled="true"
+                    app:hintTextColor="@color/textColor"
+                    android:hint="@string/title"
+                    android:layout_marginLeft="8dp">
+
+                    <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                        android:id="@+id/newNoteTextTitle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:focusable="true"
+                        android:inputType="text"
+                        android:maxLines="1" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <RelativeLayout
+                    android:id="@+id/dateLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.RoundedTextView"
+                    android:layout_below="@id/title"
+                    android:layout_marginTop="8dp">
+
+                    <com.google.android.material.checkbox.MaterialCheckBox
+                        android:id="@+id/newNoteRemainder"
+                        style="@style/textStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="4dp"
+                        android:layout_marginLeft="4dp"
+                        android:button="@drawable/ic_baseline_add_alarm_24"
+                        android:padding="8dp"
+                        android:text="@string/add_remainder"
+                        tools:ignore="NewApi" />
+
+                    <LinearLayout
+                        android:visibility="gone"
+                        android:id="@+id/dateAndTime"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/newNoteRemainder"
+                        android:orientation="vertical"
+                        android:layout_toEndOf="@id/newNoteRemainder">
+
+                        <LinearLayout
+                            android:id="@+id/newNoteShowDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/parentLayout"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/date"
+                                android:gravity="center"
+                                style="@style/textStylehint"
+                                android:padding="2dp"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:visibility="visible"
+                                android:id="@+id/newNoteDate"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:gravity="center"
+                                style="@style/textStylehint"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="start"/>
+                        </LinearLayout>
+
+                        <View
+
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:background="@color/cardview_dark_background"/>
+
+                        <LinearLayout
+                            android:id="@+id/newNoteShowTime"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/parentLayout"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/time"
+                                android:gravity="center"
+                                style="@style/textStylehint"
+                                android:padding="2dp"
+                                android:layout_gravity="center"/>
+
+                            <TextView
+                                android:visibility="visible"
+                                android:id="@+id/newNoteTime"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:padding="2dp"
+                                android:gravity="center"
+                                style="@style/textStylehint"
+                                android:layout_marginTop="4dp"
+                                android:layout_gravity="start"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:id="@+id/imageLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/rounded_shape"
+                    android:layout_below="@id/dateLayout">
+                    <TextView
+                        android:id="@+id/selectImage"
+                        android:layout_marginTop="6dp"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginEnd="6dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:text="@string/select_image"
+                        style="@style/textStylehint"/>
+                    <ImageView
+                        android:layout_below="@id/selectImage"
+                        android:id="@+id/newNoteImage"
+                        android:layout_marginTop="1dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="30dp"
+                        android:layout_margin="8dp"
+                        android:scaleType="fitXY"
+                        android:background="@color/parentLayout"
+                        tools:ignore="ContentDescription" />
+                </RelativeLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/note"
+                    android:layout_below="@id/imageLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:layout_gravity="center"
+                    android:layout_margin="8dp"
+                    android:layout_centerHorizontal="true"
+                    app:hintAnimationEnabled="true"
+                    app:hintEnabled="true"
+                    style="@style/AppTheme.RoundedTextView"
+                    android:textColorHint="@color/textColor"
+                    android:autofillHints="@string/note"
+                    app:expandedHintEnabled="true"
+                    app:hintTextColor="@color/textColor"
+                    android:hint="@string/note">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/newNoteTxtNote"
+                        android:layout_width="match_parent"
+                        android:layout_height="350dp"
+                        android:minLines="10"
+                        android:scrollbars="vertical"
+                        android:lines="10"
+                        android:gravity="start"
+                        android:inputType="textMultiLine" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+
+
+                <RelativeLayout
+                    android:id="@+id/images"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_below="@id/note"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_alignParentRight="true">
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/openCamera"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        style="@style/AppTheme.RoundedTextView"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_baseline_camera_alt_24"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginLeft="4dp"
+                        android:layout_marginBottom="4dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_marginStart="4dp" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:visibility="gone"
+                        android:id="@+id/openGallery"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_toLeftOf="@id/openCamera"
+                        android:layout_marginLeft="4dp"
+                        style="@style/AppTheme.RoundedTextView"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_baseline_image_24"
+                        android:layout_toStartOf="@id/openCamera"
+                        android:layout_marginStart="4dp" />
+
+                    <androidx.constraintlayout.utils.widget.ImageFilterView
+                        android:id="@+id/openNote"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_toLeftOf="@id/openGallery"
+                        style="@style/AppTheme.RoundedTextView"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/ic_baseline_event_note_24"
+                        android:layout_toStartOf="@id/openGallery" />
+                </RelativeLayout>
+
+                <Button
+                    android:layout_below="@id/images"
+                    android:id="@+id/saveNote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    style="@style/AppTheme.RoundedCornerMaterialButton"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginBottom="16dp"
+                    android:text="@string/save"
+                    android:textAppearance="@style/textStyle" />
+
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/baseGround"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Views.activity.MyProfile">
+
+    <include layout="@layout/tool_bar"/>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        tools:ignore="UselessParent">
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:id="@+id/viewProfileSetting"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_margin="8dp"
+            style="@style/AppTheme.RoundedTextView"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_settings_24"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true" />
+
+        <androidx.constraintlayout.utils.widget.ImageFilterView
+            android:visibility="gone"
+            android:id="@+id/viewProfileImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@id/viewProfileSetting"
+            android:layout_margin="8dp"
+            style="@style/AppTheme.RoundedTextView"
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_baseline_account_circle_24"
+            android:layout_centerHorizontal="true" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:paddingLeft="18dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="18dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/viewProfileImage"
+            style="@style/textStylehint"
+            android:text="@string/e_mail"
+            android:paddingStart="16dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewProfileEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_below="@id/email"
+            android:layout_centerHorizontal="true"
+            style="@style/AppTheme.RoundedTextView"
+            android:textColorHint="@color/textColor"
+            android:text="@string/e_mail"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:paddingLeft="18dp"
+            android:layout_marginTop="16dp"
+            android:layout_gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/viewProfileEmail"
+            style="@style/textStylehint"
+            android:text="@string/password"
+            android:paddingStart="16dp"
+            tools:ignore="RtlSymmetry" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/viewProfilePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="300dp"
+            android:layout_gravity="center"
+            android:layout_below="@id/password"
+            android:inputType="textPassword"
+            android:layout_centerHorizontal="true"
+            style="@style/AppTheme.RoundedTextView"
+            android:textColorHint="@color/textColor"
+            android:text="@string/pass"/>
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:layout_below="@id/viewProfilePassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:minWidth="150dp"
+            style="@style/textStyle"
+            android:text="@string/forget_password"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="8dp"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"/>
+    </RelativeLayout>
+
+
+</RelativeLayout>

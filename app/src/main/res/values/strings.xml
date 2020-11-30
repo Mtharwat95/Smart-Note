@@ -1,0 +1,27 @@
+<resources>
+    <string name="app_name">SmartNote</string>
+    <string name="smart_note">Smart Note</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="e_mail">E-mail</string>
+    <string name="password">Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="save">Save</string>
+    <string name="pass">*******************</string>
+    <string name="forget_password">Forget Password</string>
+    <string name="change_password">Change Password</string>
+    <string name="create_your_profile">Create Your Profile</string>
+    <string name="welcome_to_smart_note">To Start Using Private Notes</string>
+    <string name="change_profile">My Profile</string>
+    <string name="normal_notes">Normal Notes</string>
+    <string name="private_notes">Private Notes</string>
+    <string name="title">Title:</string>
+    <string name="date">Date:</string>
+    <string name="note">Note:</string>
+    <string name="note_priority">Check To Make Note Private: </string>
+    <string name="create_new_note">Create New Note</string>
+    <string name="add_remainder">Add Remainder :</string>
+    <string name="clear_remainder">Clear Remainder :</string>
+    <string name="select_image">Select Image: </string>
+    <string name="time">Time: </string>
+</resources>
