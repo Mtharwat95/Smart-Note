@@ -1,4 +1,4 @@
-package com.example.smartnote.Util;
+package com.example.smartnote.Notification;
 
 import android.app.IntentService;
 import android.app.NotificationManager;
@@ -10,7 +10,6 @@ import androidx.core.app.NotificationCompat;
 
 import com.example.smartnote.R;
 import com.example.smartnote.Views.activity.NewNote;
-import com.example.smartnote.Views.activity.SmartNote;
 
 public class NotificationService extends IntentService {
     private NotificationManager alarmNotificationManager;

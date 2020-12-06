@@ -1,4 +1,4 @@
-package com.example.smartnote.Remainder;
+package com.example.smartnote.Notification;
 
 import android.app.Service;
 import android.content.Intent;

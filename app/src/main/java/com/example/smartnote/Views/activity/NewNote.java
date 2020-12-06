@@ -4,7 +4,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -17,13 +16,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.smartnote.Remainder.AlarmBrodcast;
-import com.example.smartnote.Database.Notes;
+import com.example.smartnote.Notification.AlarmBrodcast;
+import com.example.smartnote.Model.modelClasses.Notes;
 import com.example.smartnote.R;
-import com.example.smartnote.Remainder.AlarmSoundService;
-import com.example.smartnote.Util.AppExecutors;
 import com.example.smartnote.Util.Util;
 import com.example.smartnote.ViewModels.NewNoteViewModel;
 import com.example.smartnote.databinding.ActivityNewNoteBinding;
@@ -61,7 +57,6 @@ public class NewNote extends AppCompatActivity  {
 
         binding = DataBindingUtil.setContentView(this,R.layout.activity_new_note);
         newNoteViewModel = ViewModelProviders.of(this).get(NewNoteViewModel.class);
-
 
 
         if (getIntent().getSerializableExtra("SelectedNote")!=null){
@@ -126,31 +121,26 @@ public class NewNote extends AppCompatActivity  {
 
                     String finalDate = date;
                     String finalTime = time;
-                    AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                        @Override
-                        public void run() {
-                            if (editMode){
-                                note.setId(oldNote.getId());
-                                newNoteViewModel.update(note);
-                                Log.d(TAG, "Id: "+ note.getId() +"-->"+"Title: "+note.getTitle()
-                                        +"-->"+"Date: "+note.getDate()+"-->"+"Text: "+note.getTextNote()
-                                        +"-->"+"Image: "+ Arrays.toString(note.getImageNote())
-                                        +"-->"+"noteType: "+note.getNoteType() +"-->"+"priority: "+note.getNotePriority());
-                                finish();
-                            }else {
-                                newNoteViewModel.insert(note);
-                                if (isRemainder){
-                                    setAlarm(finalDate, finalTime);
-                                }
-                                Log.d(TAG, "Id: "+ note.getId() +"-->"+"Title: "+note.getTitle()
-                                        +"-->"+"Date: "+note.getDate()+"-->"+"Text: "+note.getTextNote()
-                                        +"-->"+"Image: "+ Arrays.toString(note.getImageNote())
-                                        +"-->"+"noteType: "+note.getNoteType() +"-->"+"priority: "+note.getNotePriority());
-                                finish();
-                            }
 
+                    if (editMode){
+                        note.setId(oldNote.getId());
+                        newNoteViewModel.update(note);
+                        Log.d(TAG, "Id: "+ note.getId() +"-->"+"Title: "+note.getTitle()
+                                +"-->"+"Date: "+note.getDate()+"-->"+"Text: "+note.getTextNote()
+                                +"-->"+"Image: "+ Arrays.toString(note.getImageNote())
+                                +"-->"+"noteType: "+note.getNoteType() +"-->"+"priority: "+note.getNotePriority());
+                        finish();
+                    }else {
+                        newNoteViewModel.insert(note);
+                        if (isRemainder){
+                            setAlarm(finalDate, finalTime);
                         }
-                    });
+                        Log.d(TAG, "Id: "+ note.getId() +"-->"+"Title: "+note.getTitle()
+                                +"-->"+"Date: "+note.getDate()+"-->"+"Text: "+note.getTextNote()
+                                +"-->"+"Image: "+ Arrays.toString(note.getImageNote())
+                                +"-->"+"noteType: "+note.getNoteType() +"-->"+"priority: "+note.getNotePriority());
+                        finish();
+                    }
                 }else {
                     Toast.makeText(getApplicationContext(),"All Data Required",Toast.LENGTH_SHORT).show();
                 }

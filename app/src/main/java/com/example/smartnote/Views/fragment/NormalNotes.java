@@ -2,27 +2,19 @@ package com.example.smartnote.Views.fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
-
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.example.smartnote.ViewModels.NormalNoteVM;
-import com.example.smartnote.Util.AppExecutors;
-import com.example.smartnote.Util.Constants;
-
-import androidx.annotation.Nullable;
+import com.example.smartnote.ViewModels.NewNoteViewModel;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-
 import com.example.smartnote.Adapters.NoteAdapter;
-import com.example.smartnote.Database.Notes;
+import com.example.smartnote.Model.modelClasses.Notes;
 import com.example.smartnote.R;
 import com.example.smartnote.Views.activity.NewNote;
 import com.example.smartnote.Util.Util;
@@ -31,13 +23,21 @@ import com.example.smartnote.databinding.FragmentNotesBinding;
 
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 public class NormalNotes extends Fragment implements NoteAdapter.OnItemClickListener {
     String TAG = "NormalNoteFragment";
 
     FragmentNotesBinding binding;
-    NormalNoteVM viewModel;
+    NewNoteViewModel viewModel;
 
     NoteAdapter noteAdapter;
+
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
     @Override
@@ -59,16 +59,44 @@ public class NormalNotes extends Fragment implements NoteAdapter.OnItemClickList
     }
 
     private void setupViewModel() {
-        viewModel = ViewModelProviders.of(this).get(NormalNoteVM.class);
-        viewModel.getNormalNotes().observe(this, new Observer<List<Notes>>() {
+        viewModel = ViewModelProviders.of(this).get(NewNoteViewModel.class);
+
+        Disposable disposable =viewModel.getAllNormalNotes().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Notes>>() {
+                    @Override
+                    public void accept(List<Notes> notes) throws Exception {
+                        noteAdapter.setTasks(notes);
+//                        noteAdapter.notifyDataSetChanged();
+                    }
+                });
+        compositeDisposable.add(disposable);
+/*        viewModel.getAllNormalNotes().observe(this,notes -> noteAdapter.setTasks(notes));
+        viewModel.notesMutableLiveData.observe(this, new Observer<List<Notes>>() {
+            @Override
+            public void onChanged(List<Notes> notes) {
+                Log.d(TAG, "Tharwat :setupViewModel: ");
+                noteAdapter.setTasks(notes);
+                noteAdapter.notifyDataSetChanged();
+            }
+        });*/
+/*        viewModel.getAllNormalNotes().observe(this, new Observer<List<Notes>>() {
             @Override
             public void onChanged(@Nullable List<Notes> taskEntries) {
-                Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
+                Log.d(TAG, "Tharwat :setupViewModel: "+taskEntries.get(0).getTitle());
                 noteAdapter.setTasks(taskEntries);
+                noteAdapter.notifyDataSetChanged();
 
             }
-        });
+        });*/
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
+    }
+
 
 
     @Override
@@ -110,14 +138,16 @@ public class NormalNotes extends Fragment implements NoteAdapter.OnItemClickList
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                viewModel.delete(notes);
+                dialog.dismiss();
+/*                AppExecutors.getInstance().diskIO().execute(new Runnable() {
                     @Override
                     public void run() {
                         viewModel.delete(notes);
 //                        mDb.noteDAO().deleteNote(notes);
                         dialog.dismiss();
                     }
-                });
+                });*/
 
             }
         });

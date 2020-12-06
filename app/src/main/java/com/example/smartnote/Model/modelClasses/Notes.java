@@ -1,4 +1,4 @@
-package com.example.smartnote.Database;
+package com.example.smartnote.Model.modelClasses;
 
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;

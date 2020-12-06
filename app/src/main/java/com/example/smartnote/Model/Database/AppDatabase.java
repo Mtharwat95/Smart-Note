@@ -1,4 +1,4 @@
-package com.example.smartnote.Database;
+package com.example.smartnote.Model.Database;
 
 import android.content.Context;
 import android.util.Log;
@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+
+import com.example.smartnote.Model.modelClasses.Notes;
 
 @Database(entities = {Notes.class}, version = 1, exportSchema = false)
 public abstract class AppDatabase extends RoomDatabase {

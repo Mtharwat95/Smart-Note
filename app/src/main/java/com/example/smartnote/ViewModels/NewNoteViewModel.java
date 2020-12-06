@@ -1,37 +1,39 @@
 package com.example.smartnote.ViewModels;
 
+import android.annotation.SuppressLint;
 import android.app.Application;
-
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-
-import com.example.smartnote.Database.AppDatabase;
-import com.example.smartnote.Database.Notes;
-import com.example.smartnote.Database.Repo;
-
+import com.example.smartnote.Model.modelClasses.Notes;
+import com.example.smartnote.Model.Repository.Repo;
 import java.util.List;
+import io.reactivex.Flowable;
 
 public class NewNoteViewModel extends AndroidViewModel {
 
-    private Repo repo;
-    private LiveData<List<Notes>> notes;
+    private static final String TAG = "NewNoteViewModel";
+    private final Repo repo;
 
 
     public NewNoteViewModel(@NonNull Application application) {
         super(application);
         repo = new Repo(application);
-        notes =repo.getAllNormalNotes();
     }
 
-    public LiveData<List<Notes>> getAllNormalNotes()
-    {
-        return notes;
+    @SuppressLint("CheckResult")
+    public Flowable<List<Notes>> getAllNormalNotes() {
+
+    return repo.getAllNormalNotes();
+    }
+
+    @SuppressLint("CheckResult")
+    public Flowable<List<Notes>> getAllPrivateNotes() {
+        return repo.getAllPrivateNotes();
     }
 
     public void insert(Notes notes){
-        repo.insert(notes);
+     repo.insert(notes);
+
     }
 
     public void update(Notes notes){

@@ -1,6 +1,5 @@
-package com.example.smartnote.Database;
+package com.example.smartnote.Model.Database;
 
-import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -8,30 +7,30 @@ import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.example.smartnote.Model.modelClasses.Notes;
+
 import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.Flowable;
 
 @Dao
 public interface NoteDAO {
 
-    @Query("SELECT * FROM notes ")
-    LiveData<List<Notes>> getAllNote();
 
     @Query("SELECT * FROM notes WHERE notePriority = 'Normal' ")
-    LiveData<List<Notes>> getAllNormalNote();
+    Flowable<List<Notes>> getAllNormalNote();
 
     @Query("SELECT * FROM notes WHERE notePriority = 'Private' ")
-    LiveData<List<Notes>> getAllPrivateNote();
+    Flowable<List<Notes>> getAllPrivateNote();
 
     @Insert
-    void insertNote(Notes notes);
+    Completable insertNote(Notes notes);
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    void updateNote(Notes notes);
+    Completable updateNote(Notes notes);
 
     @Delete
-    void deleteNote(Notes notes);
-
-    @Query("SELECT * FROM notes WHERE id = :id")
-    LiveData<Notes> loadNoteById(int id);
+    Completable deleteNote(Notes notes);
 
 }

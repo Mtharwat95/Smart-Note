@@ -3,8 +3,8 @@ package com.example.smartnote.Util;
 
 import android.os.AsyncTask;
 
-import com.example.smartnote.Database.NoteDAO;
-import com.example.smartnote.Database.Notes;
+import com.example.smartnote.Model.Database.NoteDAO;
+import com.example.smartnote.Model.modelClasses.Notes;
 
 public class BackGroundThread {
 

@@ -3,10 +3,8 @@ package com.example.smartnote.Views.fragment;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -15,30 +13,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.smartnote.Adapters.NoteAdapter;
-import com.example.smartnote.Database.Notes;
+import com.example.smartnote.Model.modelClasses.Notes;
 import com.example.smartnote.R;
-import com.example.smartnote.Util.AppExecutors;
-import com.example.smartnote.Util.Constants;
 import com.example.smartnote.Util.Util;
-import com.example.smartnote.ViewModels.NormalNoteVM;
+import com.example.smartnote.ViewModels.NewNoteViewModel;
 import com.example.smartnote.Views.activity.NewNote;
 import com.example.smartnote.databinding.FragmentNotesBinding;
 
 import java.util.List;
 import java.util.Objects;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 
 public class PrivateNotes extends Fragment implements NoteAdapter.OnItemClickListener{
     String TAG = "PrivateNoteFragment";
 
     FragmentNotesBinding binding;
-    NormalNoteVM viewModel;
+    NewNoteViewModel viewModel;
 
     NoteAdapter noteAdapter;
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
 
 
     @Override
@@ -58,15 +60,32 @@ public class PrivateNotes extends Fragment implements NoteAdapter.OnItemClickLis
     }
 
     private void setupViewModel() {
-        viewModel = ViewModelProviders.of(this).get(NormalNoteVM.class);
-        viewModel.getPrivateNote().observe(this, new Observer<List<Notes>>() {
+        viewModel = ViewModelProviders.of(this).get(NewNoteViewModel.class);
+     /*   viewModel.getPrivateNote().observe(this, new Observer<List<Notes>>() {
             @Override
             public void onChanged(@Nullable List<Notes> taskEntries) {
                 Log.d(TAG, "Updating list of tasks from LiveData in ViewModel");
                 noteAdapter.setTasks(taskEntries);
 
             }
-        });
+        });*/
+
+        Disposable disposable =viewModel.getAllPrivateNotes().subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<Notes>>() {
+                    @Override
+                    public void accept(List<Notes> notes) throws Exception {
+                        noteAdapter.setTasks(notes);
+//                        noteAdapter.notifyDataSetChanged();
+                    }
+                });
+        compositeDisposable.add(disposable);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
     }
 
     @Override
@@ -141,14 +160,8 @@ public class PrivateNotes extends Fragment implements NoteAdapter.OnItemClickLis
         yes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-                    @Override
-                    public void run() {
-                        viewModel.delete(notes);
-//                        mDb.noteDAO().deleteNote(notes);
-                        dialog.dismiss();
-                    }
-                });
+                viewModel.delete(notes);
+                dialog.dismiss();
 
             }
         });

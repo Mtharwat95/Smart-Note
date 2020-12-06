@@ -1,4 +1,4 @@
-package com.example.smartnote.Remainder;
+package com.example.smartnote.Notification;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioAttributes;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -16,8 +15,7 @@ import android.widget.RemoteViews;
 import androidx.core.app.NotificationCompat;
 
 import com.example.smartnote.R;
-import com.example.smartnote.Util.AppExecutors;
-import com.example.smartnote.Views.activity.NewNote;
+
 
 public class AlarmBrodcast extends BroadcastReceiver {
     @Override

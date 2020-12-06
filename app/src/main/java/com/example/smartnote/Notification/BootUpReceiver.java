@@ -1,10 +1,9 @@
-package com.example.smartnote.Remainder;
+package com.example.smartnote.Notification;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-import com.example.smartnote.Util.AppExecutors;
 import com.example.smartnote.Views.activity.NewNote;
 
 public class BootUpReceiver extends BroadcastReceiver {

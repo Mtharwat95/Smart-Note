@@ -1,11 +1,9 @@
-package com.example.smartnote.Util;
+package com.example.smartnote.Notification;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-
-import com.example.smartnote.Remainder.AlarmSoundService;
 
 import static androidx.legacy.content.WakefulBroadcastReceiver.startWakefulService;
 

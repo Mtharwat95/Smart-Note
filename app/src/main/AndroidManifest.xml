@@ -33,17 +33,17 @@
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
-        <activity android:name=".Remainder.NotificationMessage" />
+        <activity android:name=".Notification.NotificationMessage" />
         <receiver
-            android:name=".Remainder.BootUpReceiver"
+            android:name=".Notification.BootUpReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".Remainder.AlarmBrodcast" />
-        <service android:name=".Remainder.AlarmSoundService"
+        <receiver android:name=".Notification.AlarmBrodcast" />
+        <service android:name=".Notification.AlarmSoundService"
             android:enabled="true"/>
 
     </application>

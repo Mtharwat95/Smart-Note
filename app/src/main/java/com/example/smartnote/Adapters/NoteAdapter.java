@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.smartnote.Database.Notes;
+import com.example.smartnote.Model.modelClasses.Notes;
 import com.example.smartnote.R;
 
 import java.util.List;
@@ -65,6 +65,8 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.TaskViewHolder
     }
 
     public void setTasks(List<Notes> taskEntries) {
+/*        NewNoteViewModel newNoteViewModel = ViewModelProviders.of((FragmentActivity) mContext).get(NewNoteViewModel.class);
+        newNoteViewModel.notesMutableLiveData.observe((LifecycleOwner) mContext, notes -> notesList=notes);*/
         notesList = taskEntries;
         notifyDataSetChanged();
     }

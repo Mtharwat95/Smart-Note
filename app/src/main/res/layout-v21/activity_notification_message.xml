@@ -6,7 +6,7 @@
     android:layout_margin="8dp"
     android:orientation="vertical"
     style="@style/AppTheme.RoundedTextView"
-    tools:context=".Remainder.NotificationMessage">
+    tools:context=".Notification.NotificationMessage">
 
 
     <TextView
