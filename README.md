@@ -1,5 +1,5 @@
-# Smart-Note
-# MVVM - ROOM - Live Data - Data Binding - Broad Cast Receiver
+﻿# Smart-Note
+# MVVM - ROOM - RxJava - Data Binding - Broad Cast Receiver
 # Description: 
     • Save Notes which can be (Text Or Image) With The Ability To Add Remainder To It.
     • Note Priority Can be Normal Or Private Note Whcih Require Password To Access It.
