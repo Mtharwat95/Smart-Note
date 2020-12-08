@@ -10,9 +10,3 @@
     2. MVVM With Data Binding And Live Data.
     3. Broad Cast Receiver To Set Remainder.
     4. Notification Manger As Back ground Service.
-
-
-
-
-
-
