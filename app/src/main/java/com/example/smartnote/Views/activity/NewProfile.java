@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.smartnote.R;
+import com.example.smartnote.Util.Constants;
 import com.example.smartnote.Util.Util;
 import com.example.smartnote.databinding.ActivityNewProfileBinding;
 import com.fxn.pix.Options;
@@ -40,12 +41,9 @@ public class NewProfile extends AppCompatActivity {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_new_profile);
 
 
-        binding.close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-                Toast.makeText(getApplicationContext(),"You Will Cannot Using Private Notes",Toast.LENGTH_SHORT).show();
-            }
+        binding.close.setOnClickListener(view -> {
+            finish();
+            Toast.makeText(getApplicationContext(),"You Will Cannot Using Private Notes",Toast.LENGTH_SHORT).show();
         });
 
         binding.addProfileImage.setOnClickListener(new View.OnClickListener() {
@@ -63,8 +61,8 @@ public class NewProfile extends AppCompatActivity {
                 confirmPassword = binding.addProfileConfirmPassword.getText().toString();
                 if (password.equals(confirmPassword)){
                     if (Util.validateLogin(binding.addProfileEmail , binding.addProfilePassword)){
-                        Util.saveInSharedPref("Password",password,NewProfile.this);
-                        Util.saveInSharedPref("Email",eMail,NewProfile.this);
+                        Util.saveInSharedPref(Constants.PASSWORD,password,NewProfile.this);
+                        Util.saveInSharedPref(Constants.EMAIL,eMail,NewProfile.this);
                         Toast.makeText(getApplicationContext(),"Created Success",Toast.LENGTH_SHORT).show();
                         finish();
 //                        Util.saveInSharedPref("ProfileImage",imagePath,NewProfile.this);

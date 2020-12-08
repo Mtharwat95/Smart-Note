@@ -1,13 +1,16 @@
 package com.example.smartnote.Views.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 
+import com.example.smartnote.Util.Constants;
 import com.example.smartnote.Util.Util;
 import com.example.smartnote.Views.fragment.NormalNotes;
 import com.example.smartnote.Views.fragment.PrivateNotes;
@@ -30,13 +33,19 @@ public class SmartNote extends AppCompatActivity {
 
 //        binding.setLifecycleOwner(this);
 
+        if (Util.getFromSharedPref(Constants.PASSWORD,this)==null || Util.getFromSharedPref(Constants.EMAIL,this)==null){
+            binding.menuToolbar.setVisibility(View.GONE);
+        }else {
+            setupMenu();
+        }
+
 
         binding.openProfile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO check if the user created or Not
                 if (Util.getFromSharedPref("Password",SmartNote.this) != null){
-                    Intent intent = new Intent(getApplicationContext(), MyProfile.class);
+                    Intent intent = new Intent(getApplicationContext(), ChangePassword.class);
                     startActivity(intent);
                 }else {
                     startActivity(new Intent(getApplicationContext(), NewProfile.class));
@@ -55,6 +64,19 @@ public class SmartNote extends AppCompatActivity {
 
         showViewPager();
 
+
+    }
+
+    void setupMenu(){
+        binding.menuToolbar.inflateMenu(R.menu.profile_menu);
+        binding.menuToolbar.setOnMenuItemClickListener(item -> {
+            if (item.getItemId()==R.id.changePassword){
+                startActivity(new Intent(SmartNote.this,ChangePassword.class));
+            }else if (item.getItemId() == R.id.forgetPassword){
+                startActivity(new Intent(SmartNote.this,ForgetPassword.class));
+            }
+            return false;
+        });
     }
 
 

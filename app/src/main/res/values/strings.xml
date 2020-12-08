@@ -1,4 +1,5 @@
 <resources>
+    <string name="my_profile">My Profile</string>
     <string name="app_name">SmartNote</string>
     <string name="smart_note">Smart Note</string>
     <!-- TODO: Remove or change this placeholder text -->
@@ -24,4 +25,10 @@
     <string name="clear_remainder">Clear Remainder :</string>
     <string name="select_image">Select Image: </string>
     <string name="time">Time: </string>
+    <string name="current_e_mail">Current E-mail</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="send">Send</string>
+    <string name="enter_your_e_mail_and_we_will_send_you_a_message_with_your_current_password">Enter Your E-mail and we will send you a message with your current password:</string>
 </resources>

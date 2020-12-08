@@ -5,6 +5,13 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="actionOverflowButtonStyle">@style/customMenu</item>
+    </style>
+    
+    <style name="customMenu" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_baseline_settings_24</item>
+        <item name="paddingStart">6dp</item>
+        <item name="paddingEnd">6dp</item>
     </style>
 
     <style name="ThemeDialog" parent="Theme.AppCompat.NoActionBar">

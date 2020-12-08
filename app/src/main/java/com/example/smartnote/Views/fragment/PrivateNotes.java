@@ -118,19 +118,11 @@ public class PrivateNotes extends Fragment implements NoteAdapter.OnItemClickLis
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("SelectedNote",notes);
                     intent.putExtras(bundle);
-//                    intent.putExtra(Constants.EXTRA_ID, notes.getId());
-//                    intent.putExtra(Constants.EXTRA_TITLE, notes.getTitle());
-//                    intent.putExtra(Constants.EXTRA_DATE, notes.getDate());
-//                    intent.putExtra(Constants.EXTRA_TXTNOTE, notes.getTextNote());
-//                    intent.putExtra(Constants.EXTRA_IMAGENOTE, notes.getImageNote());
-//                    intent.putExtra(Constants.EXTRA_NOTETYPE, notes.getNoteType());
-//                    intent.putExtra(Constants.EXTRA_NOTEPRIORITY, notes.getNotePriority());
                     startActivity(intent);
                     dialog.dismiss();
                 }else {
                     password.requestFocus();
                     password.setError("Incorrect Password");
-//                    Toast.makeText(requireContext(),"Incorrect Password",Toast.LENGTH_SHORT).show();
                 }
             }
         });

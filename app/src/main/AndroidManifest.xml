@@ -3,23 +3,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.smartnote">
 
-    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/image_logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/image_logo_round"
         android:requestLegacyExternalStorage="true"
+        android:roundIcon="@mipmap/image_logo_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Views.activity.ForgetPassword"
+            android:theme="@style/ThemeDialog"/>
         <activity android:name=".Views.activity.NewNote" />
-        <activity android:name=".Views.activity.NewProfile"
-            android:theme="@style/ThemeDialog"
-            />
-        <activity android:name=".Views.activity.MyProfile" />
+        <activity
+            android:name=".Views.activity.NewProfile"
+            android:theme="@style/ThemeDialog" />
+        <activity
+            android:name=".Views.activity.ChangePassword"
+            android:theme="@style/ThemeDialog" />
         <activity android:name=".Views.activity.Splash" />
         <activity android:name=".Views.activity.SmartNote">
             <intent-filter>
@@ -34,18 +42,21 @@
             android:value="ca-app-pub-3940256099942544~3347511713" />
 
         <activity android:name=".Notification.NotificationMessage" />
+
         <receiver
             android:name=".Notification.BootUpReceiver"
             android:enabled="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </receiver>
         <receiver android:name=".Notification.AlarmBrodcast" />
-        <service android:name=".Notification.AlarmSoundService"
-            android:enabled="true"/>
 
+        <service
+            android:name=".Notification.AlarmSoundService"
+            android:enabled="true" />
     </application>
 
 </manifest>
