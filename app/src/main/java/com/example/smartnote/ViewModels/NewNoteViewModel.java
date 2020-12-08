@@ -45,5 +45,8 @@ public class NewNoteViewModel extends AndroidViewModel {
         repo.delete(note);
     }
 
+    public Flowable<Notes> getNoteById(String id){
+        return repo.getNoteById(id);
+    }
 
 }

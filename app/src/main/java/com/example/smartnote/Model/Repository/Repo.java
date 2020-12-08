@@ -46,4 +46,7 @@ public class Repo {
         return noteDAO.getAllNormalNote();
     }
 
+    public Flowable<Notes> getNoteById(String id){
+        return  noteDAO.getNoteById(id);
+    }
 }

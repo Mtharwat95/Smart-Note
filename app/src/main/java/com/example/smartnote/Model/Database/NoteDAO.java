@@ -33,4 +33,7 @@ public interface NoteDAO {
     @Delete
     Completable deleteNote(Notes notes);
 
+    @Query("SELECT * FROM notes WHERE id=:id")
+    Flowable<Notes> getNoteById(String id);
+
 }

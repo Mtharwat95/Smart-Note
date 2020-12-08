@@ -10,19 +10,26 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.RemoteViews;
 
 import androidx.core.app.NotificationCompat;
 
+import com.example.smartnote.Model.modelClasses.Notes;
 import com.example.smartnote.R;
+import com.example.smartnote.Views.activity.NewNote;
+import com.example.smartnote.Views.activity.SmartNote;
 
 
 public class AlarmBrodcast extends BroadcastReceiver {
+    private static final String TAG = "AlarmBrodcast";
     @Override
     public void onReceive(Context context, Intent intent) {
         Bundle bundle = intent.getExtras();
         String text = bundle.getString("event");
         String date = bundle.getString("date") + " " + bundle.getString("time");
+        String noteId = bundle.getString("NoteId");
+        Log.d(TAG, "setAlarm: "+noteId);
 
         //TODO Stop Sound Service to play sound alarm
 //        context.startService(new Intent(context, AlarmSoundService.class));
@@ -35,9 +42,25 @@ public class AlarmBrodcast extends BroadcastReceiver {
 //            }
 //        });
 
-        Intent intent1 = new Intent(context, NotificationMessage.class);
+//TODO Open Note With Data
+/*
+        Intent intent1 = new Intent(context, NewNote.class);
+        Bundle bundle = intent.getExtras();
+
+
+        Notes oldNote = (Notes) intent.getSerializableExtra("SelectedNote");
+        Log.d(TAG, "onCreate: "+oldNote.getTitle());
+        bundle.putSerializable("SelectedNote",oldNote);
+        intent1.putExtras(bundle);
+*/
+
+
+
+        Intent intent1 = new Intent(context, SmartNote.class);
         intent1.addFlags(Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT);
         intent1.putExtra("message", text);
+//        Log.d(TAG, "onReceive: "no);
+        intent1.putExtra("NoteId",noteId);
         //Notification Builder
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, intent1, PendingIntent.FLAG_ONE_SHOT);
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

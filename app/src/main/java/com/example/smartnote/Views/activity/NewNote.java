@@ -36,6 +36,13 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class NewNote extends AppCompatActivity  {
 
@@ -50,7 +57,7 @@ public class NewNote extends AppCompatActivity  {
     byte[] image = null;
     Boolean editMode = false , isRemainder = false;
 
-
+    private CompositeDisposable compositeDisposable = new CompositeDisposable();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,11 +65,25 @@ public class NewNote extends AppCompatActivity  {
         binding = DataBindingUtil.setContentView(this,R.layout.activity_new_note);
         newNoteViewModel = ViewModelProviders.of(this).get(NewNoteViewModel.class);
 
-
+        Bundle remainderBundle ;
+        remainderBundle = getIntent().getExtras();
+//        Log.d(TAG, "onCreate: "+getIntent().getExtras().getString("NoteId"));
         if (getIntent().getSerializableExtra("SelectedNote")!=null){
              oldNote = (Notes) getIntent().getSerializableExtra("SelectedNote");
             Log.d(TAG, "onCreate: "+oldNote.getTitle());
             setOldNoteData(oldNote);
+        }else if (getIntent().getExtras()!=null && remainderBundle.getString("NoteId")!=null){
+            Log.d(TAG, "RemainderonCreate: "+remainderBundle.getString("NoteId"));
+            Disposable disposable =newNoteViewModel.getNoteById(remainderBundle.getString("NoteId"))
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Notes>() {
+                        @Override
+                        public void accept(Notes notes) throws Exception {
+                            setOldNoteData(notes);
+                        }
+                    });
+            compositeDisposable.add(disposable);
         }
 
         binding.newNoteRemainder.setOnClickListener(new View.OnClickListener() {
@@ -132,8 +153,9 @@ public class NewNote extends AppCompatActivity  {
                         finish();
                     }else {
                         newNoteViewModel.insert(note);
+                        Log.d(TAG, "onClick: "+note.getId());
                         if (isRemainder){
-                            setAlarm(finalDate, finalTime);
+                            setAlarm(finalDate, finalTime,note);
                         }
                         Log.d(TAG, "Id: "+ note.getId() +"-->"+"Title: "+note.getTitle()
                                 +"-->"+"Date: "+note.getDate()+"-->"+"Text: "+note.getTextNote()
@@ -240,6 +262,12 @@ public class NewNote extends AppCompatActivity  {
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        compositeDisposable.dispose();
+    }
+
     private void setOldNoteData(Notes oldNote) {
         editMode = true;
         binding.toolbarTitle.setText("Update Note");
@@ -302,14 +330,19 @@ public class NewNote extends AppCompatActivity  {
         }
     }
 
-    private void setAlarm(String date, String time) {
+    private void setAlarm(String date, String time,Notes note) {
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
         Intent intent = new Intent(getApplicationContext(), AlarmBrodcast.class);
+//        Bundle bundle = new Bundle();
 //        intent.putExtra("event", text);
         //TODO Send Note data to open when click notification
         intent.putExtra("time", date);
         intent.putExtra("date", time);
+        intent.putExtra("NoteId",note.getId());
+        Log.d(TAG, "setAlarm: "+note.getId());
+//        bundle.putSerializable("SelectedNote",note);
+//        intent.putExtras(bundle);
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), 0, intent, PendingIntent.FLAG_ONE_SHOT);
         String dateandtime = date + " " + time;
