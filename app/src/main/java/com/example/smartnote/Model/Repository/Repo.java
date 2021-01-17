@@ -31,6 +31,11 @@ public class Repo {
         noteDAO.deleteNote(notes).subscribeOn(Schedulers.computation()).subscribe();
     }
 
+    //Delete
+    public void deleteAll(){
+        noteDAO.deleteAllNote().subscribeOn(Schedulers.computation()).subscribe();
+    }
+
     //Update
     public void update(Notes notes){
         noteDAO.updateNote(notes).subscribeOn(Schedulers.computation()).subscribe();

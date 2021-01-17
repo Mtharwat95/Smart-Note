@@ -67,11 +67,11 @@ public class TabAdapter  extends FragmentStatePagerAdapter {
         View view = LayoutInflater.from(context).inflate(R.layout.tabs, null);
         com.google.android.material.textview.MaterialTextView tabTextView = view.findViewById(R.id.tabViewText);
         tabTextView.setText(mFragmentTitleList.get(position));
-        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.textColor));
+        tabTextView.setTextColor(ContextCompat.getColor(context, R.color.parentLayout));
 
         androidx.constraintlayout.utils.widget.ImageFilterView tabImageView = view.findViewById(R.id.tabViewImage);
         tabImageView.setImageResource(mFragmentIconList.get(position));
-        tabImageView.setColorFilter(ContextCompat.getColor(context, R.color.textColor), PorterDuff.Mode.SRC_ATOP);
+        tabImageView.setColorFilter(ContextCompat.getColor(context, R.color.parentLayout), PorterDuff.Mode.SRC_ATOP);
         return view;
     }
 }

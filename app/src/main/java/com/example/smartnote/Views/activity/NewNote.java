@@ -1,9 +1,12 @@
 package com.example.smartnote.Views.activity;
 
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
+
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -11,10 +14,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TimePicker;
 import android.widget.Toast;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.smartnote.Notification.AlarmBrodcast;
@@ -94,7 +99,7 @@ public class NewNote extends AppCompatActivity  {
                     binding.newNoteRemainder.setText(R.string.clear_remainder);
                     binding.newNoteRemainder.setButtonDrawable(R.drawable.ic_baseline_add_alert_24);
                     binding.dateAndTime.setVisibility(View.VISIBLE);
-                    Util.showDatePicker(binding.newNoteDate, NewNote.this);
+//                    Util.showDatePicker(binding.newNoteDate, NewNote.this);
                 }else {
                     isRemainder = false;
                     binding.newNoteRemainder.setText(R.string.add_remainder);
@@ -115,6 +120,7 @@ public class NewNote extends AppCompatActivity  {
                     //TODO SetAlarm
                     date = binding.newNoteDate.getText().toString();
                     time = binding.newNoteTime.getText().toString();
+
                     Log.d(TAG, "Time: "+time+"---->"+"Date: "+date);
 
                 }else {
@@ -125,7 +131,9 @@ public class NewNote extends AppCompatActivity  {
 
                 if (binding.newNotePriority.isChecked()){
                     notePriority = "Private";
+                    binding.priorityType.setText(R.string.privatePriority);
                 }else {
+                    binding.priorityType.setText(R.string.normalPriority);
                     notePriority = "Normal";
                 }
 
@@ -142,6 +150,7 @@ public class NewNote extends AppCompatActivity  {
 
                     String finalDate = date;
                     String finalTime = time;
+                    Log.d(TAG, "MyRemainder: "+finalDate+"<----->"+finalTime);
 
                     if (editMode){
                         note.setId(oldNote.getId());
@@ -174,8 +183,10 @@ public class NewNote extends AppCompatActivity  {
             public void onClick(View view) {
                 if (Util.getFromSharedPref("Password",NewNote.this) != null){
                     if (binding.newNotePriority.isChecked()){
+                        binding.priorityType.setText(R.string.privatePriority);
                         notePriority = "Private";
                     }else {
+                        binding.priorityType.setText(R.string.normalPriority);
                         notePriority = "Normal";
                     }
                 }else {
@@ -191,6 +202,7 @@ public class NewNote extends AppCompatActivity  {
                     no.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
+
                             notePriority = "Normal";
                             binding.newNotePriority.setChecked(false);
                             dialog.dismiss();
@@ -213,14 +225,21 @@ public class NewNote extends AppCompatActivity  {
         binding.newNoteShowDate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+//                Util.showCustomDate(binding.newNoteDate, NewNote.this);
                 Util.showDatePicker(binding.newNoteDate, NewNote.this);
             }
         });
 
         binding.newNoteShowTime.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("SetTextI18n")
+            @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
                 Util.showTimePicker(binding.newNoteTime, NewNote.this);
+
+//                Util.showCustomTime(binding.newNoteTime,NewNote.this);
+
+
             }
         });
 

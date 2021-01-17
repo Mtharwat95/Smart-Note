@@ -88,16 +88,6 @@
             tools:ignore="UselessParent">
 
 
-            <androidx.constraintlayout.utils.widget.ImageFilterView
-                android:visibility="gone"
-                android:id="@+id/addProfileImage"
-                style="@style/AppTheme.RoundedTextView"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="4dp"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_baseline_account_circle_24" />
 
             <com.google.android.material.textfield.TextInputLayout
                 style="@style/AppTheme.RoundedTextView"

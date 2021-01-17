@@ -31,4 +31,8 @@
     <string name="confirm_new_password">Confirm New Password</string>
     <string name="send">Send</string>
     <string name="enter_your_e_mail_and_we_will_send_you_a_message_with_your_current_password">Enter Your E-mail and we will send you a message with your current password:</string>
+    <string name="ok">Ok</string>
+    <string name="rest_all_data">Rest All Data</string>
+    <string name="normalPriority">Normal</string>
+    <string name="privatePriority">Private</string>
 </resources>

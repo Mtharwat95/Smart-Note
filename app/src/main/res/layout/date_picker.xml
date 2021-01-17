@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:background="@color/baseGround">
+
+    <DatePicker
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/datePicker"
+        android:datePickerMode="spinner"
+
+        tools:ignore="UnusedAttribute" />
+
+    <Button
+        android:id="@+id/setDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/ok"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@id/datePicker"
+        android:layout_alignParentRight="true"
+        android:layout_margin="2dp"/>
+
+
+</RelativeLayout>

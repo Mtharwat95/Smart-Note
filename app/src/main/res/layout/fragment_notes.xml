@@ -13,17 +13,40 @@
         tools:context=".Views.fragment.NormalNotes">
 
 
-        <androidx.core.widget.NestedScrollView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/normalNoteRv"
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                tools:ignore="UselessParent">
 
-            </androidx.recyclerview.widget.RecyclerView>
-        </androidx.core.widget.NestedScrollView>
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/noteSize"
+                    style="@style/textStyle"
+                    android:padding="2dp"
+                    android:textColor="@color/parentLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/berkshire_swash"
+                    android:gravity="center"
+                    android:text="20 Notes" />
+
+                <androidx.core.widget.NestedScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/normalNoteRv"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </androidx.core.widget.NestedScrollView>
+
+
+            </LinearLayout>
 
     </FrameLayout>
 </layout>

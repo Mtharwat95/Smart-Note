@@ -73,10 +73,11 @@
                     android:layout_marginTop="8dp"
                     android:layout_marginStart="8dp"
                     android:padding="4dp"
+                    android:textSize="18sp"
                     android:layout_marginRight="8dp"
                     android:layout_centerHorizontal="true"
                     android:text="@string/note_priority"
-                    style="@style/textStyle"
+                    style="@style/textStylehint2"
                     android:layout_alignParentEnd="false"
                     android:layout_alignParentRight="false"
                     android:layout_marginLeft="8dp"
@@ -90,19 +91,35 @@
                     android:layout_alignParentRight="false"
                     android:layout_toEndOf="@id/priority"
                     android:layout_marginLeft="8dp"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     style="?android:attr/starStyle"
+                    android:background="@drawable/ic_baseline_stars_24"
                     android:layout_marginRight="8dp"
                     android:layout_marginStart="8dp"
                     android:layout_toRightOf="@id/priority" />
 
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_below="@id/newNotePriority"
-                    android:id="@+id/title"
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/priorityType"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:minWidth="300dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginRight="4dp"
+                    android:text="@string/normalPriority"
+                    android:layout_below="@id/newNotePriority"
+                    android:layout_toEndOf="@id/priority"
+                    style="@style/textStylehint"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toRightOf="@id/priority" />
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_below="@id/priorityType"
+                    android:id="@+id/title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
                     android:layout_centerHorizontal="true"
@@ -113,6 +130,7 @@
                     android:autofillHints="@string/title"
                     app:expandedHintEnabled="true"
                     app:hintTextColor="@color/textColor"
+                    app:hintTextAppearance="@style/textStylehint2"
                     android:hint="@string/title"
                     android:layout_marginLeft="8dp">
 
@@ -123,6 +141,8 @@
                         android:gravity="center"
                         android:focusable="true"
                         android:inputType="text"
+                        style="@style/textStyle"
+
                         android:maxLines="1" />
 
                 </com.google.android.material.textfield.TextInputLayout>
@@ -133,25 +153,27 @@
                     android:layout_height="wrap_content"
                     style="@style/AppTheme.RoundedTextView"
                     android:layout_below="@id/title"
-                    android:layout_marginTop="8dp">
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp">
 
                     <com.google.android.material.checkbox.MaterialCheckBox
                         android:id="@+id/newNoteRemainder"
-                        style="@style/textStyle"
+                        style="@style/textStylehint2"
+                        android:textSize="18sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentLeft="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="4dp"
                         android:layout_marginLeft="4dp"
                         android:button="@drawable/ic_baseline_add_alarm_24"
                         android:padding="8dp"
                         android:text="@string/add_remainder"
-                        tools:ignore="NewApi" />
+                        tools:ignore="NewApi"
+                        />
 
                     <LinearLayout
-                        android:visibility="gone"
+                        android:visibility="visible"
                         android:id="@+id/dateAndTime"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -163,7 +185,6 @@
                             android:id="@+id/newNoteShowDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/parentLayout"
                             android:orientation="horizontal">
 
                             <TextView
@@ -176,7 +197,6 @@
                                 android:layout_gravity="center"/>
 
                             <TextView
-                                android:visibility="visible"
                                 android:id="@+id/newNoteDate"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -191,13 +211,14 @@
 
                             android:layout_width="match_parent"
                             android:layout_height="2dp"
-                            android:background="@color/cardview_dark_background"/>
+                            android:background="@color/white"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"/>
 
                         <LinearLayout
                             android:id="@+id/newNoteShowTime"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@color/parentLayout"
                             android:orientation="horizontal">
 
                             <TextView
@@ -219,6 +240,8 @@
                                 style="@style/textStylehint"
                                 android:layout_marginTop="4dp"
                                 android:layout_gravity="start"/>
+
+
                         </LinearLayout>
 
                     </LinearLayout>
@@ -254,7 +277,7 @@
                         android:maxHeight="150dp"
                         android:layout_margin="8dp"
                         android:scaleType="fitXY"
-                        android:background="@color/parentLayout"
+                        android:background="@color/baseGround"
                         tools:ignore="ContentDescription" />
                 </RelativeLayout>
 
@@ -268,22 +291,34 @@
                     android:layout_centerHorizontal="true"
                     app:hintAnimationEnabled="true"
                     app:hintEnabled="true"
+                    android:paddingTop="8dp"
+                    android:paddingLeft="4dp"
+                    android:paddingBottom="10dp"
                     style="@style/AppTheme.RoundedTextView"
                     android:textColorHint="@color/textColor"
                     android:autofillHints="@string/note"
+                    app:hintTextAppearance="@style/textStylehint2"
                     app:expandedHintEnabled="true"
-                    app:hintTextColor="@color/textColor"
-                    android:hint="@string/note">
+                    android:hint="@string/note"
+                    android:paddingStart="4dp"
+                    android:translationY="8dp"
+                    tools:ignore="RtlSymmetry">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/newNoteTxtNote"
                         android:layout_width="match_parent"
                         android:layout_height="350dp"
                         android:minLines="10"
-                        android:scrollbars="vertical"
                         android:lines="10"
+                        android:scrollbars="vertical"
+                        style="@style/textStyle"
+                        android:translationY="10dp"
+                        android:firstBaselineToTopHeight="8dp"
+                        android:paddingBottom="4dp"
+                        android:layout_marginTop="8dp"
                         android:gravity="start"
-                        android:inputType="textMultiLine" />
+                        android:inputType="textMultiLine"
+                        tools:ignore="UnusedAttribute" />
 
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -297,6 +332,8 @@
                     android:layout_below="@id/note"
                     android:layout_marginLeft="8dp"
                     android:layout_marginRight="8dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@drawable/tab_layout"
                     android:layout_alignParentRight="true">
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
@@ -308,15 +345,19 @@
                         android:src="@drawable/ic_baseline_camera_alt_24"
                         android:layout_alignParentEnd="true"
                         android:layout_marginLeft="4dp"
+                        android:layout_marginRight="4dp"
+                        android:layout_centerVertical="true"
                         android:layout_marginBottom="4dp"
                         android:layout_alignParentRight="true"
-                        android:layout_marginStart="4dp" />
+                        android:layout_marginStart="4dp"
+                        android:layout_marginEnd="4dp" />
 
                     <androidx.constraintlayout.utils.widget.ImageFilterView
                         android:visibility="gone"
                         android:id="@+id/openGallery"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_centerVertical="true"
                         android:layout_toLeftOf="@id/openCamera"
                         android:layout_marginLeft="4dp"
                         style="@style/AppTheme.RoundedTextView"
@@ -329,23 +370,26 @@
                         android:id="@+id/openNote"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
+                        android:layout_centerVertical="true"
                         android:layout_toLeftOf="@id/openGallery"
                         style="@style/AppTheme.RoundedTextView"
                         android:scaleType="fitXY"
                         android:src="@drawable/ic_baseline_event_note_24"
                         android:layout_toStartOf="@id/openGallery" />
+                    <Button
+                        android:id="@+id/saveNote"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        style="@style/AppTheme.RoundedCornerMaterialButton"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginBottom="16dp"
+                        android:text="@string/save"
+                        android:textAppearance="@style/textStyle"
+                        tools:ignore="RelativeOverlap" />
+
                 </RelativeLayout>
 
-                <Button
-                    android:layout_below="@id/images"
-                    android:id="@+id/saveNote"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/AppTheme.RoundedCornerMaterialButton"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="16dp"
-                    android:text="@string/save"
-                    android:textAppearance="@style/textStyle" />
 
             </RelativeLayout>
 

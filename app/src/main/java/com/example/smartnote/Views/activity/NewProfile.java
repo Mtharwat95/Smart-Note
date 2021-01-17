@@ -46,12 +46,6 @@ public class NewProfile extends AppCompatActivity {
             Toast.makeText(getApplicationContext(),"You Will Cannot Using Private Notes",Toast.LENGTH_SHORT).show();
         });
 
-        binding.addProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Pix.start(NewProfile.this, Options.init().setRequestCode(1));
-            }
-        });
 
         binding.addProfileSave.setOnClickListener(new View.OnClickListener() {
             @Override

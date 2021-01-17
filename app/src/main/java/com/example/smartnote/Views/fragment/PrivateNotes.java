@@ -76,6 +76,11 @@ public class PrivateNotes extends Fragment implements NoteAdapter.OnItemClickLis
                     @Override
                     public void accept(List<Notes> notes) throws Exception {
                         noteAdapter.setTasks(notes);
+                        if (notes.size()>1){
+                            binding.noteSize.setText(notes.size()+" Notes");
+                        }else if (notes.size()==1||notes.size()==0){
+                            binding.noteSize.setText(notes.size()+" Note");
+                        }
 //                        noteAdapter.notifyDataSetChanged();
                     }
                 });

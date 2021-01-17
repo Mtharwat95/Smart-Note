@@ -45,6 +45,8 @@ public class ForgetPassword extends AppCompatActivity {
                 binding.myEmail.setError("This Email Doesn't Exist");
             }
         });
+
+        binding.close.setOnClickListener(view -> finish());
     }
 
 }

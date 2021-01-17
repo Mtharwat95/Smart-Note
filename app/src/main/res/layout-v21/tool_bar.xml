@@ -10,7 +10,7 @@
     android:padding="4dp"
     app:layout_constraintCircleRadius="20dp">
 
-    <androidx.constraintlayout.utils.widget.ImageFilterView
+<!--    <androidx.constraintlayout.utils.widget.ImageFilterView
         android:visibility="gone"
         android:id="@+id/openProfile"
         android:layout_width="50dp"
@@ -19,7 +19,7 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_baseline_account_circle_24"
         android:layout_gravity="center"
-        android:layout_alignParentRight="true" />
+        android:layout_alignParentRight="true" />-->
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:visibility="gone"

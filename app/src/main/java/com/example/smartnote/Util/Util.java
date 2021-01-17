@@ -25,6 +25,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
@@ -42,6 +43,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.example.smartnote.R;
+import com.example.smartnote.Views.activity.NewNote;
+import com.google.android.material.timepicker.MaterialTimePicker;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -381,6 +384,7 @@ public class Util {
 
     private static String date, time;
 
+
     public static void showDatePicker(final TextView textView, Context context) {
         // Get Current Date
 
@@ -391,7 +395,8 @@ public class Util {
         int mDay = c.get(Calendar.DAY_OF_MONTH);
 
 
-        DatePickerDialog datePickerDialog = new DatePickerDialog(context,
+
+        DatePickerDialog datePickerDialog = new DatePickerDialog(context, android.R.style.Theme_Holo_Dialog,
                 new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -403,8 +408,11 @@ public class Util {
 
                     }
                 }, mYear, mMonth, mDay);
+        datePickerDialog.setTitle("Select Date :");
         datePickerDialog.show();
     }
+
+
 
     public static void showTimePicker(final TextView textView, Context context) {
         // Get Current Time
@@ -413,7 +421,7 @@ public class Util {
         int mMinute = c.get(Calendar.MINUTE);
 
         // Launch Time Picker Dialog
-        TimePickerDialog timePickerDialog = new TimePickerDialog(context,
+        TimePickerDialog timePickerDialog = new TimePickerDialog(context,android.R.style.Theme_Holo_Dialog,
                 new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay,
@@ -429,9 +437,49 @@ public class Util {
 //                        txtTime.setText(hourOfDay + ":" + minute);
                     }
                 }, mHour, mMinute, false);
+        timePickerDialog.setTitle("Select Time : ");
         timePickerDialog.show();
 
     }
+
+    public static MaterialDialog showCustomTime(TextView textView,Context context) {
+        MaterialDialog dialog;
+        dialog = new MaterialDialog.Builder(context)
+                .customView(R.layout.time_picker, false)
+                .show();
+        View view = dialog.getCustomView();
+        assert view != null;
+        TimePicker simpleTimePicker = view.findViewById(R.id.timePicker);
+        simpleTimePicker.setIs24HourView(false);
+        Button ok = view.findViewById(R.id.ok);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+//                binding.newNoteTime.setText(simpleTimePicker.getCurrentHour().toString()+":"+simpleTimePicker.getCurrentMinute().toString());
+        simpleTimePicker.setOnTimeChangedListener(new TimePicker.OnTimeChangedListener() {
+            @SuppressLint("SetTextI18n")
+            @Override
+            public void onTimeChanged(TimePicker timePicker, int i, int i1) {
+                String AM_PM ;
+                if(i < 12) {
+                    AM_PM = "AM";
+                } else {
+                    AM_PM = "PM";
+                }
+                textView.setText(i+":"+i1+"  "+AM_PM);
+            }
+        });
+
+
+        return dialog;
+    }
+
 
     public static void changeFragment(Fragment fragment, boolean needToAddBackstack, FragmentManager mFragmentManager, int fragmentId) {
         FragmentTransaction mFragmentTransaction = mFragmentManager.beginTransaction();
@@ -471,6 +519,34 @@ public class Util {
         Log.d(TAG, "getDate: " + date1 + "---->");
         Log.d(TAG, "getDate222: " + currentDate + "---->");
         return false;
+    }
+
+    @SuppressLint("SetTextI18n")
+    public static MaterialDialog showCustomDate(TextView textView, Context context) {
+        MaterialDialog dialog;
+        dialog = new MaterialDialog.Builder(context)
+                .customView(R.layout.date_picker, false)
+                .show();
+        View view = dialog.getCustomView();
+        assert view != null;
+        DatePicker simpleTimePicker = view.findViewById(R.id.datePicker);
+
+        Button ok = view.findViewById(R.id.setDate);
+
+        ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                dialog.dismiss();
+            }
+        });
+
+//                binding.newNoteTime.setText(simpleTimePicker.getCurrentHour().toString()+":"+simpleTimePicker.getCurrentMinute().toString());
+
+        textView.setText(simpleTimePicker.getDayOfMonth()+":"+simpleTimePicker.getMonth()+":"+simpleTimePicker.getYear());
+
+
+        return dialog;
     }
 
 

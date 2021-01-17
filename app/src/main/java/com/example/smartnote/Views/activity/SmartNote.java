@@ -5,11 +5,16 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.viewpager.widget.ViewPager;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.example.smartnote.Model.Repository.Repo;
 import com.example.smartnote.Util.Constants;
 import com.example.smartnote.Util.Util;
 import com.example.smartnote.Views.fragment.NormalNotes;
@@ -23,6 +28,7 @@ public class SmartNote extends AppCompatActivity {
 
     TabAdapter tabAdapter;
     private SmartNoteBinding binding;
+    private static final String TAG = "SmartNote";
 //    SmartNoteViewModel smartNoteViewModel;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +46,7 @@ public class SmartNote extends AppCompatActivity {
         }
 
 
-        binding.openProfile.setOnClickListener(new View.OnClickListener() {
+        binding.menuToolbar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //TODO check if the user created or Not
@@ -67,6 +73,7 @@ public class SmartNote extends AppCompatActivity {
 
     }
 
+    @SuppressLint("NewApi")
     void setupMenu(){
         binding.menuToolbar.inflateMenu(R.menu.profile_menu);
         binding.menuToolbar.setOnMenuItemClickListener(item -> {
@@ -74,6 +81,43 @@ public class SmartNote extends AppCompatActivity {
                 startActivity(new Intent(SmartNote.this,ChangePassword.class));
             }else if (item.getItemId() == R.id.forgetPassword){
                 startActivity(new Intent(SmartNote.this,ForgetPassword.class));
+            }else if (item.getItemId() == R.id.restData){
+                Log.d(TAG, "onLongPress: ");
+                MaterialDialog dialog = Util.showConfirmationDialog(this);
+
+                View view =dialog.getView();
+                com.google.android.material.textview.MaterialTextView title = view.findViewById(R.id.confirmDialogTitle);
+                Button no = view.findViewById(R.id.confirmNo);
+                Button yes = view.findViewById(R.id.confirmYes);
+                title.setText("Are You Sure You Want To Reset All Data ?");
+
+                no.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+
+                    }
+                });
+
+                yes.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Repo repo = new Repo(getApplication());
+                        repo.deleteAll();
+                        Util.clearAllSharedPref(SmartNote.this);
+                        dialog.dismiss();
+/*                AppExecutors.getInstance().diskIO().execute(new Runnable() {
+                    @Override
+                    public void run() {
+                        viewModel.delete(notes);
+//                        mDb.noteDAO().deleteNote(notes);
+                        dialog.dismiss();
+                    }
+                });*/
+
+                    }
+                });
+
             }
             return false;
         });

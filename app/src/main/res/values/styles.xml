@@ -41,8 +41,10 @@
         <item name="textAllCaps">false</item>
         <item name="android:gravity">center</item>
     </style>
+
+
     <style name="AppTheme.RoundedTextView" parent="Widget.AppCompat.Button.Colored">
-        <item name="android:background">@drawable/rounded_shape</item>
+        <item name="android:background">@drawable/views_shape</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textSize">20sp</item>
         <item name="fontFamily">@font/acme</item>
@@ -64,7 +66,7 @@
 
     <style name="textStyle" >
         <item name="backgroundTint">@color/viewsLayout</item>
-        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColor">#A7A7A7</item>
         <item name="android:textSize">18sp</item>
         <item name="fontFamily">@font/acme</item>
         <item name="fontStyle">italic</item>
@@ -75,7 +77,7 @@
 
     <style name="textStyleHeadLines" >
         <item name="backgroundTint">@color/viewsLayout</item>
-        <item name="android:textColor">@color/textColor</item>
+        <item name="android:textColor">@color/parentLayout</item>
         <item name="android:textSize">32sp</item>
         <item name="fontFamily">@font/berkshire_swash</item>
         <item name="fontStyle">italic</item>
@@ -85,8 +87,8 @@
 
     <style name="textStylehint" >
         <item name="backgroundTint">@color/viewsLayout</item>
-        <item name="android:textColor">@color/textColor</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">#A7A7A7</item>
+        <item name="android:textSize">12sp</item>
         <item name="fontFamily">@font/acme</item>
         <item name="fontStyle">italic</item>
         <item name="textAllCaps">false</item>
@@ -96,7 +98,7 @@
         <item name="backgroundTint">@color/viewsLayout</item>
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textSize">14sp</item>
-        <item name="fontFamily">@font/berkshire_swash</item>
+        <item name="fontFamily">@font/acme</item>
         <item name="fontStyle">italic</item>
         <item name="textAllCaps">false</item>
     </style>

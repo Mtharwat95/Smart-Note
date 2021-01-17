@@ -8,12 +8,19 @@
         android:id="@+id/changePassword"
         android:title="@string/change_password"
         app:showAsAction="never"
-        android:actionLayout="@layout/smart_note"
-        tools:ignore="AlwaysShowAction" />
+        android:icon="@drawable/ic_baseline_vpn_key_24"
+        android:actionLayout="@layout/smart_note" />
 
     <item
         android:id="@+id/forgetPassword"
         android:title="@string/forget_password"
+        android:icon="@drawable/ic_baseline_email_24"
         app:showAsAction="never"
         android:actionLayout="@layout/smart_note"/>
+
+    <item android:id="@+id/restData"
+        android:title="@string/rest_all_data"
+        app:showAsAction="never"
+        android:actionLayout="@layout/smart_note"
+        android:icon="@drawable/ic_baseline_delete_forever_24"/>
 </menu>

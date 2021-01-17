@@ -66,6 +66,12 @@ public class NormalNotes extends Fragment implements NoteAdapter.OnItemClickList
                 .subscribe(new Consumer<List<Notes>>() {
                     @Override
                     public void accept(List<Notes> notes) throws Exception {
+                        Log.d(TAG, "accept: "+notes.size());
+                        if (notes.size()>1){
+                            binding.noteSize.setText(notes.size()+" Notes");
+                        }else if (notes.size()==1||notes.size()==0){
+                            binding.noteSize.setText(notes.size()+" Note");
+                        }
                         noteAdapter.setTasks(notes);
 //                        noteAdapter.notifyDataSetChanged();
                     }
