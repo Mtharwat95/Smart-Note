@@ -15,7 +15,7 @@
 ![](ScreenShots/New Image Note.jpg)
 ![](ScreenShots/Normal Notes.jpg)
 ![](ScreenShots/Private Notes.jpg)
-![](ScreenShots/change password.jpg)
+![](ScreenShots/change_password.jpg)
 ![](ScreenShots/create profile.jpg)
 ![](ScreenShots/fill profile data.jpg)
 ![](ScreenShots/forget password.jpg)
