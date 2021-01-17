@@ -12,11 +12,11 @@
     4. Notification Manger As Back ground Service.
 
 # Screen-Shots:
-![](ScreenShots/New Image Note.jpg)
-![](ScreenShots/Normal Notes.jpg)
-![](ScreenShots/Private Notes.jpg)
-![](ScreenShots/change password.jpg)
-![](ScreenShots/create profile.jpg)
-![](ScreenShots/fill profile data.jpg)
-![](ScreenShots/forget password.jpg)
-![](ScreenShots/open private note.jpg)
+![](ScreenShots/New_Image_Note.jpg)
+![](ScreenShots/Normal_Notes.jpg)
+![](ScreenShots/Private_Notes.jpg)
+![](ScreenShots/change_password.jpg)
+![](ScreenShots/create_profile.jpg)
+![](ScreenShots/fill_profile_data.jpg)
+![](ScreenShots/forget_password.jpg)
+![](ScreenShots/open_private_note.jpg)
